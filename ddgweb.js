@@ -18,9 +18,15 @@ ddg.rawAPI = function(query) {
 }
 
 ddg.result = function(query) {
-  return new Promise(function() {
-    ddg.rawAPI.then(function() {
-      
+  return new Promise(function(resolve, reject) {
+    ddg.rawAPI.then(function(json) {
+      if(json.AbstractText) {
+        resolve(json.AbstractText);
+      } else if (json.RelatedTopics[0].AbstractText) {
+        resolve(json.RelatedTopics[0].AbstractText);
+      } else {
+        reject();
+      }
     });
   });
 }
