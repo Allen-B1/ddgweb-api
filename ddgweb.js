@@ -1,5 +1,8 @@
 var ddg = {};
-ddg.rawAPI = function(query, ssl) {
+ddg.rawAPI = function(query) {
+  var ssl = false;
+  if(location.href.indexOf("https") == 0)
+    ssl = true;
   return new Promise(function(resolve, reject) {
     var now = Date.now();
     var name = "ddg_rawApi_" + now + "" + Math.floor(Math.random() * 1000 + 1);
