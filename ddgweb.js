@@ -1,5 +1,5 @@
 var ddg = {};
-ddg.rawApi = function(query, ssl) {
+ddg.rawAPI = function(query, ssl) {
   return new Promise(function(resolve, reject) {
     var now = Date.now();
     var name = "ddg_rawApi_" + now + "" + Math.floor(Math.random() * 1000 + 1);
