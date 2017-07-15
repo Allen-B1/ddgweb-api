@@ -22,8 +22,8 @@ ddg.result = function(query) {
     ddg.rawAPI.then(function(json) {
       if(json.AbstractText) {
         resolve(json.AbstractText);
-      } else if (json.RelatedTopics[0].AbstractText) {
-        resolve(json.RelatedTopics[0].AbstractText);
+      } else if (json.RelatedTopics[0].Text) {
+        resolve(json.RelatedTopics[0].Text);
       } else {
         reject();
       }
