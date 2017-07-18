@@ -10,6 +10,6 @@ Step 1: Include ddgweb.js
 Step 2:
 ```js
 ddg.result("DuckDuckGo").then(function(result) {
-  alert(result);
+  alert(result.text);
 });
 ```
