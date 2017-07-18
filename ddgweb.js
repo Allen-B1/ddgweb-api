@@ -20,13 +20,15 @@ ddg.rawAPI = function(query) {
 ddg.result = function(query) {
   return new Promise(function(resolve, reject) {
     ddg.rawAPI.then(function(json) {
+      var newResult = {};
       if(json.AbstractText) {
-        resolve(json.AbstractText);
+        newResult.text = (json.AbstractText);
       } else if (json.RelatedTopics[0].Text) {
-        resolve(json.RelatedTopics[0].Text);
+        newResult.text = (json.RelatedTopics[0].Text);
       } else {
         reject();
       }
+      resolve(newResult);
     });
   });
 }
