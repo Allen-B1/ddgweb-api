@@ -13,3 +13,5 @@ ddg.result("DuckDuckGo").then(function(result) {
   alert(result.text);
 });
 ```
+### Next steps
+Read the [API documentation](docs/API.md)
