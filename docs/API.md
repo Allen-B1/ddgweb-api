@@ -1,5 +1,6 @@
 # Documentation
-## `ddg.result`
+## Functions
+### `ddg.result`
 ```js
 ddg.result(query)
 ```
@@ -13,8 +14,21 @@ ddg.result("DuckDuckGo").then(function(res) {
   console.error("There was an error.");
 });
 ```
+### `ddg.rawAPI`
+```js
+ddg.rawAPI(query)
+```
+This is the internal function used by the library. It sends a JSONP request and returns a `Promise` with the corresponding JSON data.
 
-## The `res` object
+**Example**
+```js
+ddg.rawAPI(query).then(function(json) {
+  console.log(json);
+});
+```
+
+## Types
+### The `res` object
 The `res` object contains the following members:
  - `res.text`
  - `res.src`
