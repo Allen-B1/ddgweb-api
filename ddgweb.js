@@ -35,14 +35,14 @@ ddg.result = function(query) {
     var newResult = {};
     if(json.AbstractText) {
       newResult.text = (json.AbstractText);
-    } else if (json.RelatedTopics[0].Text) {
+    } else if (json.RelatedTopics[0] && json.RelatedTopics[0].Text) {
       newResult.text = (json.RelatedTopics[0].Text);
     } else {
-      return Promise.reject();
+      newResult.text = null;
     }
 
-    if(json.AbstractSource) {
-      newResult.src = json.AbstractSource;
+    if(json.AbstractURL) {
+      newResult.src = json.AbstractURL;
     } else {
       newResult.src = null;
     }
@@ -58,6 +58,11 @@ ddg.result = function(query) {
       newResult.icon.height = json.RelatedTopics[0].Icon.Height | 0 || null;
       newResult.icon.width = json.RelatedTopics[0].Icon.Width | 0 || null;
     }
+    
+    // Name
+    if(!json.Heading)
+      return Promise.reject("No query found");
+    newResult.name = json.Heading;
     
     return Promise.resolve(newResult);
   });
