@@ -1,11 +1,15 @@
 var ddg = {};
-ddg.appName = (function() {
-  var q = document.querySelector("meta[name=application-name]");
-  if(q)
-    return q.getAttribute("content");
-  else
-    return document.title;
-})();
+
+window.addEventListener("load", function() {
+  ddg.appName = (function() {
+    var q = document.querySelector("meta[name=application-name]");
+    if(q)
+      return q.getAttribute("content");
+    else
+      return document.title;
+  })();  
+});
+
 ddg.rawAPI = function(query, appName) {
   // Http or Https?
   var ssl = false;
