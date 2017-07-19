@@ -67,10 +67,11 @@ where `icon` contains the following fields:
 ## Examples
 ### Example: Getting the icon
 ```js
-ddg.query("Hawaii").then(function(res) {
+ddg.result("Hawaii").then(function(res) {
   var img = document.createElement("img");
   img.src = res.icon.src;
   img.style.width = res.icon.width + "px";
   img.style.height = res.icon.height + "px";
+  document.body.appendChild(img);
 });
 ```
