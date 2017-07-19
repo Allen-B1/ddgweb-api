@@ -29,6 +29,15 @@ ddg.rawAPI(query).then(function(json) {
 
 ## Types
 ### The `res` object
-The `res` object contains the following members:
- - `res.text`
- - `res.src`
+This should give you a good idea of what the object looks like:
+```js
+({
+  text: "In computing, internationalization and localization are means of adapting computer software to different languages, regional differences and technical requirements of a target market. Internationalization is the process of designing a software application so that it can potentially be adapted to various languages and regions without engineering changes. Localization is the process of adapting internationalized software for a specific region or language by adding locale-specific components and translating text. Localization uses the infrastructure or flexibility provided by internationalization.",
+  src: "Wikipedia",
+  icon: {
+    src: "https://duckduckgo.com/i/6df33ee7.png",
+    width: 266,
+    height: 200
+  }
+})
+```
