@@ -63,3 +63,14 @@ where `icon` contains the following fields:
 | `src` | The source of the image | `String` |
 | `width` | The width of the image | `Number` |
 | `height` | The height of the image | `Number` |
+
+## Examples
+### Example: Getting the icon
+```js
+ddg.query("Hawaii").then(function(res) {
+  var img = document.createElement("img");
+  img.src = res.icon.src;
+  img.style.width = res.icon.width + "px";
+  img.style.height = res.icon.height + "px";
+});
+```
