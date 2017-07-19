@@ -1,5 +1,5 @@
 var ddg = {};
-ddg.rawAPI = function(query) {
+ddg.rawAPI = function(query, appName) {
   // Http or Https?
   var ssl = false;
   if(location.href.indexOf("https") == 0)
@@ -12,14 +12,15 @@ ddg.rawAPI = function(query) {
     var name = "ddg_rawApi_" + now + "" + Math.floor(Math.random() * 1000 + 1);
     window[name] = resolve;
     var script = document.createElement("script");
-    script.src = "http" + (ssl ? "s": "") + "://api.duckduckgo.com/?q=" + encodeURI(query) + "&format=json&pretty=0&callback=" + name;
+    script.src = "http" + (ssl ? "s": "") + "://api.duckduckgo.com/?q=" + encodeURI(query) + "&format=json&pretty=0&callback=" + name +
+      (appName ? "&t=" + appName : "");
     document.getElementsByTagName("head")[0].appendChild(script);
   });
 }
 
-ddg.result = function(query) {
+ddg.result = function(query, appName) {
   return new Promise(function(resolve, reject) {
-    ddg.rawAPI.then(function(json) {
+    ddg.rawAPI(query, appName).then(function(json) {
       var newResult = {};
       if(json.AbstractText) {
         newResult.text = (json.AbstractText);
@@ -27,6 +28,12 @@ ddg.result = function(query) {
         newResult.text = (json.RelatedTopics[0].Text);
       } else {
         reject();
+      }
+      
+      if(json.AbstractSource) {
+        newResult.src = json.AbstractSource;
+      } else {
+        newResult.src = null;
       }
       resolve(newResult);
     });
