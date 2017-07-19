@@ -30,23 +30,22 @@ ddg.rawAPI = function(query) {
 }
 
 ddg.result = function(query) {
-  return new Promise(function(resolve, reject) {
-    ddg.rawAPI(query).then(function(json) {
-      var newResult = {};
-      if(json.AbstractText) {
-        newResult.text = (json.AbstractText);
-      } else if (json.RelatedTopics[0].Text) {
-        newResult.text = (json.RelatedTopics[0].Text);
-      } else {
-        reject();
-      }
-      
-      if(json.AbstractSource) {
-        newResult.src = json.AbstractSource;
-      } else {
-        newResult.src = null;
-      }
-      resolve(newResult);
-    });
+  return ddg.rawAPI(query).then(function(json) {
+    var newResult = {};
+    if(json.AbstractText) {
+      newResult.text = (json.AbstractText);
+    } else if (json.RelatedTopics[0].Text) {
+      newResult.text = (json.RelatedTopics[0].Text);
+    } else {
+      reject();
+    }
+
+    if(json.AbstractSource) {
+      newResult.src = json.AbstractSource;
+    } else {
+      newResult.src = null;
+    }
+    
+    return Promise.resolve(newResult);
   });
 }
