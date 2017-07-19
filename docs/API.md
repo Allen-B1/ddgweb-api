@@ -48,15 +48,18 @@ None of these are actually types, they just represent what functions return.
 ```
 
 #### Fields
+
 | Name | Description | Type |
-+------+---------+------+
+|------|---------|------|
 | `name` | What the query was | `String` |
 | `text` | A description of `name` | `String` |
 | `src` | The source of the informati on | `String` |
 | `icon` | The icon | `Object` |
 
 where `icon` contains the following fields: 
+
 | Name | Description | Type |
+|------|---------|------|
 | `src` | The source of the image | `String` |
 | `width` | The width of the image | `Number` |
 | `height` | The height of the image | `Number` |
