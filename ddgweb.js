@@ -10,7 +10,7 @@ window.addEventListener("load", function() {
   })();  
 });
 
-ddg.rawAPI = function(query, appName) {
+ddg.rawAPI = function(query) {
   // Http or Https?
   var ssl = false;
   if(location.href.indexOf("https") == 0)
@@ -24,14 +24,14 @@ ddg.rawAPI = function(query, appName) {
     window[name] = resolve;
     var script = document.createElement("script");
     script.src = "http" + (ssl ? "s": "") + "://api.duckduckgo.com/?q=" + encodeURI(query) + "&format=json&pretty=0&callback=" + name +
-      (appName ? "&t=" + appName : "");
+      (ddg.appName ? "&t=" + encodeURI(ddg.appName) : "");
     document.getElementsByTagName("head")[0].appendChild(script);
   });
 }
 
-ddg.result = function(query, appName) {
+ddg.result = function(query) {
   return new Promise(function(resolve, reject) {
-    ddg.rawAPI(query, appName).then(function(json) {
+    ddg.rawAPI(query).then(function(json) {
       var newResult = {};
       if(json.AbstractText) {
         newResult.text = (json.AbstractText);
