@@ -10,7 +10,7 @@ This function looks up `query` and returns a `Promise` with one argument. The ar
 ```js
 ddg.result("DuckDuckGo").then(function(res) {
   console.log(res.text);
-}).error(function() {
+}).catch(function() {
   console.error("There was an error.");
 });
 ```
