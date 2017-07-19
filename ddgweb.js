@@ -23,7 +23,7 @@ ddg.rawAPI = function(query) {
     var name = "ddg_rawApi_" + now + "" + Math.floor(Math.random() * 1000 + 1);
     window[name] = resolve;
     var script = document.createElement("script");
-    script.src = "http" + (ssl ? "s": "") + "://api.duckduckgo.com/?q=" + encodeURI(query) + "&format=json&pretty=0&callback=" + name +
+    script.src = "http" + (ssl ? "s": "") + "://api.duckduckgo.com/?q=" + encodeURI(query) + "&format=json&pretty=0&skip_disambig=1&callback=" + name +
       (ddg.appName ? "&t=" + encodeURI(ddg.appName) : "");
     document.getElementsByTagName("head")[0].appendChild(script);
   });
