@@ -4,7 +4,9 @@
 ```js
 ddg.result(query)
 ```
-This function looks up `query` and returns a `Promise` with one argument. The argument is described below, as the `res` object. If no result was found, the function is rejected.
+This function looks up `query` and returns a `Promise` with one argument. If a result was found, the promise resolves with the object described below.
+
+If no result was found, the function is rejected.
 
 **Example**
 ```js
@@ -28,7 +30,7 @@ ddg.rawAPI(query).then(function(json) {
 ```
 
 ## Types
-### The `res` object
+### The object resolved by `ddg.result`
 This should give you a good idea of what the object looks like:
 ```js
 ({
@@ -41,3 +43,5 @@ This should give you a good idea of what the object looks like:
   }
 })
 ```
+
+`text` is guarenteed never to be `null`. Everything else can be `null`.
