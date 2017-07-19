@@ -1,6 +1,6 @@
 # Documentation
 ## Functions
-### `ddg.result`
+### `result`
 ```js
 ddg.result(query)
 ```
@@ -14,7 +14,7 @@ ddg.result("DuckDuckGo").then(function(res) {
   console.error("There was an error.");
 });
 ```
-### `ddg.rawAPI`
+### `rawAPI`
 ```js
 ddg.rawAPI(query)
 ```
