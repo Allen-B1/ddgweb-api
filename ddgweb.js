@@ -1,5 +1,6 @@
 var ddg = {};
 
+// Find app name for &t=appName required by DuckDuckGO
 window.addEventListener("load", function() {
   ddg.appName = (function() {
     var q = document.querySelector("meta[name=application-name]");
@@ -37,13 +38,25 @@ ddg.result = function(query) {
     } else if (json.RelatedTopics[0].Text) {
       newResult.text = (json.RelatedTopics[0].Text);
     } else {
-      reject();
+      return Promise.reject();
     }
 
     if(json.AbstractSource) {
       newResult.src = json.AbstractSource;
     } else {
       newResult.src = null;
+    }
+    
+    // Find the icon
+    newResult.icon = {};
+    if(json.Image) {
+      newResult.icon.src = json.Image;
+      newResult.icon.height = json.ImageHeight | 0 || null;
+      newResult.icon.width = json.ImageWidth | 0 || null;
+    } else if(json.RelatedTopics[0] && json.RelatedTopics[0].Icon) {
+      newResult.icon.src = json.RelatedTopics[0].Icon.URL;
+      newResult.icon.height = json.RelatedTopics[0].Icon.Height | 0 || null;
+      newResult.icon.width = json.RelatedTopics[0].Icon.Width | 0 || null;
     }
     
     return Promise.resolve(newResult);
