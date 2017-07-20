@@ -1,5 +1,5 @@
 # duckduckgo-web
-A DuckDuckGo API for the web in javascript
+A DuckDuckGo API for the web in JavaScript with no dependencies.
 
 ## Getting Started
 Step 1: Include `ddgweb.js`
