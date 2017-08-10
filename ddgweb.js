@@ -11,7 +11,11 @@ window.addEventListener("load", function() {
   })();  
 });
 
-ddg.rawAPI = function(query) {
+ddg.rawAPI = function(query, skip_disambig) {
+  if(skip_disambig === undefined) {
+    skip_disambig = 1;
+  }
+  
   // Http or Https?
   var ssl = false;
   if(location.href.indexOf("https") == 0)
@@ -24,14 +28,14 @@ ddg.rawAPI = function(query) {
     var name = "ddg_rawApi_" + now + "" + Math.floor(Math.random() * 1000 + 1);
     window[name] = resolve;
     var script = document.createElement("script");
-    script.src = "http" + (ssl ? "s": "") + "://api.duckduckgo.com/?q=" + encodeURI(query) + "&format=json&pretty=0&skip_disambig=1&callback=" + name +
+    script.src = "http" + (ssl ? "s": "") + "://api.duckduckgo.com/?q=" + encodeURI(query) + "&format=json&pretty=0&skip_disambig=" + skip_disambig + "&callback=" + name +
       (ddg.appName ? "&t=" + encodeURI(ddg.appName) : "");
     document.getElementsByTagName("head")[0].appendChild(script);
   });
 }
 
 ddg.result = function(query) {
-  return ddg.rawAPI(query).then(function(json) {
+  return ddg.rawAPI(query, 1).then(function(json) {
     var newResult = {};
     if(json.AbstractText) {
       newResult.text = (json.AbstractText);
