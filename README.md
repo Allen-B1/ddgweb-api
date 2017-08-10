@@ -1,6 +1,8 @@
 # ddgweb-api
 A DuckDuckGo API for the web in JavaScript with no dependencies.
 
+Please note that this is not an official api.
+
 ## Getting Started
 Step 1: Include `ddgweb.js`
 ```html
