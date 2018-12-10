@@ -6,7 +6,7 @@ Please note that this is not an official api.
 ## Getting Started
 Step 1: Include `ddgweb.js`
 ```html
-<script src="https://cdn.rawgit.com/Allen-B1/ddgweb-api/master/ddgweb.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/Allen-B1/ddgweb-api@master/ddgweb.min.js"></script>
 ```
 
 Step 2:
